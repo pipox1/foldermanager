@@ -1,0 +1,12 @@
+{
+  "name": "procore-folder-manager",
+  "version": "1.0.0",
+  "description": "Gestor visual de carpetas Procore",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "axios": "^1.6.2"
+  }
+}

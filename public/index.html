@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Procore Folder Manager</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="container-header">
+        <div class="logo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="#F57921">
+            <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
+          </svg>
+          <h1>Folder Manager</h1>
+        </div>
+        <div id="user-info"></div>
+      </div>
+    </header>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen">
+      <div class="login-container">
+        <div class="login-icon">📁</div>
+        <h2>Procore Folder Manager</h2>
+        <p>Gestiona tus carpetas con marcadores de respuestas pendientes</p>
+        <button onclick="login()" class="btn btn-primary btn-large">
+          Iniciar Sesión con Procore
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Screen -->
+    <div id="main-screen" class="screen hidden">
+      <div class="container">
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="selectors">
+            <div class="selector-group">
+              <label>Compañía</label>
+              <select id="company-select" onchange="loadProjects()">
+                <option value="">Selecciona una compañía...</option>
+              </select>
+            </div>
+
+            <div class="selector-group">
+              <label>Proyecto</label>
+              <select id="project-select" onchange="loadFolders()">
+                <option value="">Selecciona un proyecto...</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="toolbar-actions">
+            <button onclick="openSettings()" class="btn btn-icon" title="Configurar carpetas visibles">
+              ⚙️
+            </button>
+            <button onclick="refreshFolders()" class="btn btn-secondary">
+              🔄 Actualizar
+            </button>
+          </div>
+        </div>
+
+        <!-- Carpetas Grid -->
+        <div id="folders-container" class="folders-grid"></div>
+
+        <!-- Modal de Documentos -->
+        <div id="documents-modal" class="modal hidden">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 id="modal-title">Documentos</h3>
+              <button onclick="closeDocumentsModal()" class="btn-close">✕</button>
+            </div>
+            <div id="modal-body" class="modal-body"></div>
+          </div>
+        </div>
+
+        <!-- Modal de Configuración -->
+        <div id="settings-modal" class="modal hidden">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>⚙️ Configurar Carpetas Visibles</h3>
+              <button onclick="closeSettingsModal()" class="btn-close">✕</button>
+            </div>
+            <div class="modal-body">
+              <p class="settings-description">
+                Selecciona las carpetas que deseas ver en el panel principal. 
+                Todas las carpetas se mantienen actualizadas.
+              </p>
+              <div id="settings-folders-list" class="settings-list"></div>
+              <div class="modal-footer">
+                <button onclick="closeSettingsModal()" class="btn btn-secondary">
+                  Cancelar
+                </button>
+                <button onclick="saveSettings()" class="btn btn-primary">
+                  Guardar Configuración
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

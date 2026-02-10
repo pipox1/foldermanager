@@ -1,18 +1,18 @@
 {
   "version": 2,
-  "functions": {
-    "api/**/*.js": {
-      "memory": 1024,
-      "maxDuration": 10
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "/api/\$1"
     },
     {
-      "src": "/(.*\\.(css|js|png|jpg|svg|ico))",
+      "src": "/(.*\\.css|.*\\.js|.*\\.png|.*\\.jpg|.*\\.svg|.*\\.ico)",
       "dest": "/public/\$1"
     },
     {
